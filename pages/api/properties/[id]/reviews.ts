@@ -69,7 +69,7 @@ export default function handler(
 
     // If no reviews found, return empty array instead of error
     res.status(200).json(propertyReviews);
-  } catch (error) {
+  } catch {
     res.status(500).json({ error: "Failed to fetch reviews" });
   }
 }

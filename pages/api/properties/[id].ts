@@ -36,7 +36,7 @@ export default function handler(
     };
 
     res.status(200).json(propertyWithId);
-  } catch (error) {
+  } catch {
     res.status(500).json({ error: "Failed to fetch property" });
   }
 }
