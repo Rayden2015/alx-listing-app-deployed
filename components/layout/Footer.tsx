@@ -9,7 +9,7 @@ const Footer: React.FC = () => {
         <div className="md:col-span-1 flex flex-col">
           <div className="mb-4">
             <Image
-              src="/assets/Logp Showcase.png"
+              src="/assets/logo-showcase.png"
               alt="ALX Logo"
               width={60}
               height={60}

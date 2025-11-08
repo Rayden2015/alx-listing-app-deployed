@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { PropertyProps } from "@/interfaces";
-import { PROPERTYLISTINGSAMPLE } from "@/constants";
+import { PROPERTY_LISTING_SAMPLE } from "@/constants";
 
 type Data = PropertyProps | { error: string };
 
@@ -19,23 +19,15 @@ export default function handler(
       return res.status(400).json({ error: "Property ID is required" });
     }
 
-    // Find property by ID
-    const property = PROPERTYLISTINGSAMPLE.find((prop, index) => {
-      const propId = prop.id || index + 1;
-      return String(propId) === String(id);
-    });
+    const property = PROPERTY_LISTING_SAMPLE.find(
+      (prop) => String(prop.id) === String(id),
+    );
 
     if (!property) {
       return res.status(404).json({ error: "Property not found" });
     }
 
-    // Ensure property has ID
-    const propertyWithId = {
-      ...property,
-      id: property.id || PROPERTYLISTINGSAMPLE.indexOf(property) + 1,
-    };
-
-    res.status(200).json(propertyWithId);
+    res.status(200).json(property);
   } catch {
     res.status(500).json({ error: "Failed to fetch property" });
   }

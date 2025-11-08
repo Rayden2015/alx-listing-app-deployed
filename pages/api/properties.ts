@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { PropertyProps } from "@/interfaces";
-import { PROPERTYLISTINGSAMPLE } from "@/constants";
+import { PROPERTY_LISTING_SAMPLE } from "@/constants";
 
 type Data = PropertyProps[] | { error: string };
 
@@ -13,13 +13,7 @@ export default function handler(
   }
 
   try {
-    // Add IDs to properties if they don't have them
-    const propertiesWithIds = PROPERTYLISTINGSAMPLE.map((property, index) => ({
-      ...property,
-      id: property.id || index + 1,
-    }));
-
-    res.status(200).json(propertiesWithIds);
+    res.status(200).json(PROPERTY_LISTING_SAMPLE);
   } catch {
     res.status(500).json({ error: "Failed to fetch properties" });
   }
