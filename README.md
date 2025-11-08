@@ -1,46 +1,24 @@
-# ALX Listing App
-
-The **ALX Listing App** is a modern web application scaffold for building an Airbnb clone listing page.  
-This project establishes a robust foundation using **Next.js**, **TypeScript**, **Tailwind CSS**, and **ESLint**, following best practices for scalability, maintainability, and clean code.
-
----
-
-## 🚀 Project Goals
-
-- Create a production-ready scaffold for an Airbnb-style property listing page.
-- Use **TypeScript** for type safety and reusable interfaces.
-- Build responsive, accessible UI components with **Tailwind CSS**.
-- Organize the codebase for clarity and scalability.
-- Maintain code quality with **ESLint**.
-
----
-
-## 📂 Project Structure
-
-- components/ # Reusable UI components (e.g., Button, Navbar, Card)
-- interfaces/ # TypeScript interfaces and types for props, data models
-- constants/ # Static values (e.g., enums, config objects, static lists)
-- public/assets/ # Static assets like images, icons, fonts
-- pages/ # Next.js pages (routes).
-
----
-
-## 🛠️ Getting Started
-
-Follow these instructions to run the project locally:
+### Project Overview
+ALX Listing App scaffolds an Airbnb-style frontend with browsing, property detail, and booking pages. It’s a Next.js 15 project with React 19, TailwindCSS, and TypeScript for type-safe UI work. The UI is built from reusable components (components/) and sample data in constants/.
 
 
-```bash
-### 1️⃣ Clone the repository
+### Tech Stack
+Runtime: Next.js 15 (pages router), Node.js
+Lang: TypeScript/TSX across components and API routes
+Styling: TailwindCSS with global styles in styles/globals.css
+Linting: ESLint via eslint.config.mjs
+Build tooling: PostCSS, Tailwind, TypeScript configs in repo root
 
-git clone https://github.com/kingsleyiwuchukwu/alx-listing-app
 
-cd alx-listing-app
+### What Happens When You Run npm run start
+Script kickoff: npm run start triggers the start script in package.json, which executes next start. This command expects that npm run build has already produced the .next production bundle.
+Next.js server bootstrap: next start spins up the Next.js production server. It loads next.config.ts (enabling reactStrictMode and allowing remote images from picsum.photos) and reads runtime env files if present.
+Route manifest load: The server reads the compiled routes from .next/ (derived from files in pages/ and pages/api/). It does not execute your application code yet; it just readies the handlers.
+Request handling sequence (example: visiting /):
+Next resolves the / route to pages/index.tsx.
+Before rendering the page component, Next wraps it with the custom App component from pages/_app.tsx, which injects the site-wide layout.
 
-### 2️⃣ Install dependencies
 
-npm install
-
-### 3️⃣ Run the development server
-
-npm run dev
+### Request handling sequence (example: visiting /):
+Next resolves the / route to pages/index.tsx.
+Before rendering the page component, Next wraps it with the custom App component from pages/_app.tsx, which injects the site-wide layout.

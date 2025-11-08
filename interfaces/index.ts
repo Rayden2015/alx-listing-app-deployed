@@ -1,58 +1,55 @@
+import { ReactNode } from "react";
+export interface LayoutProps {
+  children: ReactNode;
+}
 export interface CardProps {
   title: string;
-  description: string;
-  imageUrl: string;
+  image: string;
+  location: string;
+  price: string;
 }
-
+export interface PillProps{
+  title: string;
+  image?: string;
+}
 export interface ButtonProps {
   text: string;
   onClick?: () => void;
+  type?: "button" | "submit" | "reset";
 }
 
 export interface PropertyProps {
-  id?: string | number;
-  name: string;
-  address: {
-    state: string;
-    city: string;
-    country: string};
-  rating: number;
-  category: string[];
-  price: number;
-  offers: {
-    bed: string;
-    shower: string;
-    occupants: string;};
-  image: string;
-  discount?: string;
+    name:     string;
+    address:  Address;
+    rating:   number;
+    category: string[];
+    price:    number;
+    offers:   Offers;
+    image:    string;
+    discount?: string;
 }
 
-export interface ReviewProps {
-  id: string | number;
-  propertyId: string | number;
-  author: string;
-  rating: number;
-  comment: string;
-  date: string;
-}
-
-export interface BookingProps {
-  propertyId: string | number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
-  checkIn: string;
-  checkOut: string;
-  guests: number;
-  cardNumber: string;
-  expirationDate: string;
-  cvv: string;
-  billingAddress: {
-    street: string;
-    city: string;
-    state: string;
-    zipCode: string;
+export interface Address {
+    state:   string;
+    city:    string;
     country: string;
-  };
+}
+
+export interface Offers {
+    bed:       string;
+    shower:    string;
+    occupants: string;
+}
+
+export interface Review {
+  id: string;
+  comment: string;
+}
+
+export interface BookingDetails {
+  propertyName: string;
+  startDate: string;
+  totalNights: number;
+  bookingFee: number;
+  price: number;
 }

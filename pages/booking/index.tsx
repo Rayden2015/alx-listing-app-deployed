@@ -1,9 +1,8 @@
-import React from "react";
 import axios from "axios";
 import { useState } from "react";
 
 export default function BookingForm() {
-  const [formData] = useState({
+  const [formData, /*setFormData*/] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -23,9 +22,10 @@ export default function BookingForm() {
     setError(null);
 
     try {
-      await axios.post("/api/bookings", formData);
+      /*const response =*/ await axios.post("/api/bookings", formData);
       alert("Booking confirmed!");
-    } catch {
+    } catch (error) {
+      console.error("Booking failed:", error);
       setError("Failed to submit booking.");
     } finally {
       setLoading(false);

@@ -1,47 +1,36 @@
-import PropertyCard from "@/components/property/PropertyCard";
-import { PROPERTY_LISTING_SAMPLE } from "@/constants";
-import { PropertyProps } from "@/interfaces";
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import Pill from "@/components/common/Pill";
+import Card from "@/components/common/Card";
+import { PROPERTYLISTINGSAMPLE } from "@/constants";
 
-const FALLBACK_PROPERTIES = PROPERTY_LISTING_SAMPLE;
-
-export default function Home() {
-  const [properties, setProperties] = useState<PropertyProps[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchProperties = async () => {
-      const baseUrl = process.env.NEXT_PUBLIC_API_BASE_URL;
-      const endpoint = baseUrl
-        ? `${baseUrl.replace(/\/$/, "")}/properties`
-        : "/api/properties";
-
-      try {
-        const response = await axios.get<PropertyProps[]>(endpoint, { timeout: 4000 });
-        setProperties(response.data.length ? response.data : FALLBACK_PROPERTIES);
-      } catch (error) {
-        console.warn("Falling back to bundled listings:", error);
-        setProperties(FALLBACK_PROPERTIES);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProperties();
-  }, []);
-
-  if (loading) {
-    return <p className="p-8 text-center text-gray-500">Loading...</p>;
-  }
-
+export default function index() {
+  const pills = [
+    "Top Villa",
+    "Self Checkin",
+    "Free Reschudle",
+    "Instant book",
+    "Book Now, Pay Later",
+  ];
+  const propertyLinstings = PROPERTYLISTINGSAMPLE;
   return (
-    <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {properties.map((property) => (
-        <PropertyCard key={property.id ?? property.name} property={property} />
-      ))}
-      <SpeedInsights />
-    </div>
+    <>
+      <section className="bg-[url('/assets/Image1.png')] bg-cover bg-center rounded-4xl text-black py-20 px-4 text-center mb-7">
+        <h1 className="text-4xl font-bold mb-4">
+          Find your favorite place here!
+        </h1>
+        <h2 className="text-xl">
+          The best prices for over 2 million properties worldwide.
+        </h2>
+      </section>
+      <section className="flex justify-between bg-white rounded-4xl text-white">
+        {pills.map((pill, index) => (
+          <Pill key={index} title={pill} />
+        ))}
+      </section>
+      <section className="grid grid-cols-1 md:grid-cols-3 gap-12 space-y-3 my-12">
+        {propertyLinstings.map((property, index) => (
+          <Card key={index} {...property} />
+        ))}
+      </section>
+    </>
   );
 }
